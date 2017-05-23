@@ -48,10 +48,19 @@ public class DashBoardView extends View {
      * 信用分数
      */
     private float mValue;
-
+    /**
+     * 描述的语言
+     */
     private String mDescript;
+    /**
+     * 信用等级
+     */
     private String mCreditLevel;
 
+    /**
+     * 是否是否需要指针线条
+     */
+    private boolean isStroke = false;
 
     public DashBoardView(Context context) {
         this(context, null);
@@ -106,6 +115,7 @@ public class DashBoardView extends View {
         rotate += (value - 350) / mLevelOnePerDegree;
 
         canvas.rotate(-110 + mCurrentRotate, mCenterX, mCenterY);
+
         if (mCurrentRotate < rotate) {
             mCurrentRotate += 1;
             postDelayed(new Runnable() {
@@ -117,10 +127,12 @@ public class DashBoardView extends View {
         }
         mPaint.setColor(scaleColor);
         canvas.drawCircle(mCenterX, mPadding, Dp2Px(context, 2.5f), mPaint);
-
+        if (isStroke) {
+            canvas.drawLine(mCenterX, mCenterY, mCenterX, mCenterY - (mWidth / 2), mPaint);
+        }
 
         //画文字
-        canvas.restore(); //防止文字更正一起旋转
+        canvas.restore(); //防止文字跟着一起旋转
         canvas.drawText(mDescript, mWidth / 2, mHeight - mPadding - Dp2Px(context, 5), mPaint);
         mPaint.setColor(scaleColor);
         mPaint.setTextSize(Dp2Px(context, 14));
@@ -164,6 +176,7 @@ public class DashBoardView extends View {
         canvas.save();
 
         canvas.rotate(-110, mCenterX, mCenterY);
+
         mBgPaint.setColor(scaleColor);
         mBgPaint.setStrokeWidth(mDialStrokeWidth);
         float startY = mPadding + mSpace - mInnerCircleStrokeWidth / 2f;
@@ -264,6 +277,14 @@ public class DashBoardView extends View {
      */
     public void setmCreditLevel(String level) {
         this.mCreditLevel = level;
+    }
+
+    /**
+     * 是否为实心线指针
+     * @param isStroke
+     */
+    public void needIsStroke(boolean isStroke) {
+        this.isStroke = isStroke;
     }
 
     /**

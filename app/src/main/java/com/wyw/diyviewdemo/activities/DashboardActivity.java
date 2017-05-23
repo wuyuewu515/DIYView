@@ -3,7 +3,6 @@ package com.wyw.diyviewdemo.activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.BoringLayout;
 
 import com.wyw.diyviewdemo.R;
 import com.wyw.diyviewdemo.views.DashBoardView;
@@ -12,6 +11,7 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 项目名称：DIYView
@@ -29,10 +29,17 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashbord);
         ButterKnife.bind(this);
 
+        initData();
+
+    }
+
+    private void initData() {
         boardView.setmCreditLevel("very good");
         Random random = new Random();
         int point = random.nextInt(500) + 350;
         boardView.setmValue(point);
         boardView.setmDescript("这是描述语言");
+        boardView.needIsStroke(random.nextBoolean());
     }
+
 }
