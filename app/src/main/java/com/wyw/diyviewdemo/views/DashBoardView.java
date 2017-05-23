@@ -47,7 +47,10 @@ public class DashBoardView extends View {
     /**
      * 信用分数
      */
-    private float value;
+    private float mValue;
+
+    private String mDescript;
+    private String mCreditLevel;
 
 
     public DashBoardView(Context context) {
@@ -82,7 +85,7 @@ public class DashBoardView extends View {
 
         //画点操作
         canvas.save();
-        value = 800;
+        float value = mValue;
         float rotate = 0; //偏转角度
         if (value - 700 > 0) {
             rotate += (value - 700) / mLevelFivePerDegree;
@@ -115,15 +118,13 @@ public class DashBoardView extends View {
         mPaint.setColor(scaleColor);
         canvas.drawCircle(mCenterX, mPadding, Dp2Px(context, 2.5f), mPaint);
 
-        String descript = "您的信用分超过平台0%的用户";
-        String creditLevel = "信用极差";
 
         //画文字
-        canvas.restore();
-        canvas.drawText(descript, mWidth / 2, mHeight - mPadding - Dp2Px(context, 5), mPaint);
+        canvas.restore(); //防止文字更正一起旋转
+        canvas.drawText(mDescript, mWidth / 2, mHeight - mPadding - Dp2Px(context, 5), mPaint);
         mPaint.setColor(scaleColor);
         mPaint.setTextSize(Dp2Px(context, 14));
-        canvas.drawText(creditLevel, mCenterX, mCenterY, mPaint);
+        canvas.drawText(mCreditLevel, mCenterX, mCenterY, mPaint);
         mPaint.setTextSize(Dp2Px(context, 44));
         //动画分数，与上面一步的“点”同步
         if (mCurrentRotate < rotate) {
@@ -131,7 +132,7 @@ public class DashBoardView extends View {
             int currentPoint = 350 + (int) (prePoint * mCurrentRotate);
             canvas.drawText(String.valueOf(currentPoint), mCenterX, mCenterY - Dp2Px(context, 20), mPaint);
         } else {
-            canvas.drawText(value + "", mCenterX, mCenterY - Dp2Px(context, 20), mPaint);
+            canvas.drawText(mValue + "", mCenterX, mCenterY - Dp2Px(context, 20), mPaint);
         }
     }
 
@@ -238,6 +239,32 @@ public class DashBoardView extends View {
         mLevelFivePerDegree = 250f / sectionDegree;
     }
 
+    /**
+     * 设置分数
+     *
+     * @param value 分数
+     */
+    public void setmValue(float value) {
+        this.mValue = value;
+    }
+
+    /**
+     * 设置描述语言
+     *
+     * @param descript 描述
+     */
+    public void setmDescript(String descript) {
+        this.mDescript = descript;
+    }
+
+    /**
+     * 设置信用等级
+     *
+     * @param level 信用等级
+     */
+    public void setmCreditLevel(String level) {
+        this.mCreditLevel = level;
+    }
 
     /**
      * dp转px
