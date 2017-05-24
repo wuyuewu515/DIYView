@@ -21,7 +21,7 @@
         android:id="@+id/btn_dashbord2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="仪表盘" />
+        android:text="水纹球" />
 
     <Button
         android:id="@+id/btn_dashbord3"

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.wyw.diyviewdemo.activities.DashboardActivity;
+import com.wyw.diyviewdemo.activities.WaveBallActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             break;
-            case R.id.btn_dashbord2:
-                break;
+            case R.id.btn_dashbord2: { //水纹球
+                Intent intent = new Intent(this, WaveBallActivity.class);
+                startActivity(intent);
+            }
+            break;
             case R.id.btn_dashbord3:
                 break;
         }

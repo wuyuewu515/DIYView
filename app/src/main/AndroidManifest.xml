@@ -15,8 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activities.DashboardActivity"/>
+        <!-- 仪表盘 -->
+        <activity android:name=".activities.DashboardActivity" />
+        <!-- 水纹球 -->
+        <activity android:name=".activities.WaveBallActivity" />
     </application>
 
 </manifest>
