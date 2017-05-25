@@ -1,13 +1,13 @@
 package com.wyw.diyviewdemo.activities;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.LinearInterpolator;
 
 import com.wyw.diyviewdemo.R;
-import com.wyw.diyviewdemo.views.DashBoardView;
-
-import java.util.Random;
+import com.wyw.diyviewdemo.views.WaveBallView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +20,9 @@ import butterknife.ButterKnife;
  * 参考博客:http://blog.csdn.net/ta893115871/article/details/52245815
  */
 public class WaveBallActivity extends AppCompatActivity {
+    @BindView(R.id.waveBall)
+    WaveBallView waveBall;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,10 @@ public class WaveBallActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        ObjectAnimator objectAnimator0 = ObjectAnimator.ofFloat(waveBall, "progress", 0f, 80f);
+        objectAnimator0.setDuration(3300);
+        objectAnimator0.setInterpolator(new LinearInterpolator());
+        objectAnimator0.start();
     }
 
 }

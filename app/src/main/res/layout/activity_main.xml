@@ -21,11 +21,11 @@
         android:id="@+id/btn_dashbord2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="水纹球" />
+        android:text="水纹球效果进度条" />
 
     <Button
         android:id="@+id/btn_dashbord3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="仪表盘" />
+        android:text="水纹效果图" />
 </LinearLayout>

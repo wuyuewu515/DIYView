@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -74,8 +76,8 @@ public class WaveBallView extends View {
      */
     private void init() {
         radius = Dp2Px(context, 100);
-        progress = 70;
-        maxProgress = 100;
+//        progress = 70;
+//        maxProgress = 100;
 
         //文字
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -149,10 +151,10 @@ public class WaveBallView extends View {
 
         if (progress != 0.0f) {
             //根据直径绘制赛贝尔曲线的次数
-            int count = radius * 1 / 60;
+            int count = radius * 1 / 6;
             //控制y点的坐标
             float point = (1 - percent) * 15;
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i <= count; i++) {
                 path.rQuadTo(15, -point, 30, 0);
                 path.rQuadTo(15, point, 30, 0);
             }
@@ -169,6 +171,23 @@ public class WaveBallView extends View {
 
         bitmapCanvas.restore();
         canvas.drawBitmap(bitmap, 0, 0, null);
+
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                invalidate();
+            }
+        }, 10);
+
+    }
+
+    public float getProgress() {
+        return progress;
+    }
+
+    public void setProgress(float progress) {
+        this.progress = Float.valueOf(df.format(progress));
+        invalidate();
     }
 
     /**
@@ -180,4 +199,43 @@ public class WaveBallView extends View {
     public static int Dp2Px(Context context, float dp) {
         return (int) (dp * context.getResources().getDisplayMetrics().density + 0.5f);
     }
+
+
+//    private final static class SavedState extends BaseSavedState {
+//        float progress;
+//
+//        public SavedState(Parcel source) {
+//            super(source);
+//        }
+//
+//        public SavedState(Parcelable superState) {
+//            super(superState);
+//        }
+//
+//        public static final Parcelable.Creator<SavedState> CREATOR
+//                = new Parcelable.Creator<SavedState>() {
+//            public SavedState createFromParcel(Parcel in) {
+//                return new SavedState(in);
+//            }
+//
+//            public SavedState[] newArray(int size) {
+//                return new SavedState[size];
+//            }
+//        };
+//    }
+//
+//    @Override
+//    protected Parcelable onSaveInstanceState() {
+//        Parcelable superState = super.onSaveInstanceState();
+//        SavedState ss = new SavedState(superState);
+//        ss.progress = progress;
+//        return ss;
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(Parcelable state) {
+//        SavedState ss = (SavedState) state;
+//        super.onRestoreInstanceState(ss.getSuperState());
+//        setProgress(ss.progress);
+//    }
 }
