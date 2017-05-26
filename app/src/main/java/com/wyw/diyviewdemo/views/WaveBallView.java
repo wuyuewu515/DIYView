@@ -171,14 +171,6 @@ public class WaveBallView extends View {
 
         bitmapCanvas.restore();
         canvas.drawBitmap(bitmap, 0, 0, null);
-
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                invalidate();
-            }
-        }, 10);
-
     }
 
     public float getProgress() {
