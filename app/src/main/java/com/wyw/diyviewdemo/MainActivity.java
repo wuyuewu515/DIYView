@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.wyw.diyviewdemo.activities.CardViewActivity;
 import com.wyw.diyviewdemo.activities.DashboardActivity;
 import com.wyw.diyviewdemo.activities.WaterWaveActivity;
 import com.wyw.diyviewdemo.activities.WaveBallActivity;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_dashbord, R.id.btn_dashbord2, R.id.btn_dashbord3})
+    @OnClick({R.id.btn_dashbord, R.id.btn_dashbord2, R.id.btn_dashbord3, R.id.btn_viewCard})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_dashbord: { //仪表盘视图
@@ -35,12 +36,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             break;
-            case R.id.btn_dashbord3:{ //水纹效果图
+            case R.id.btn_dashbord3: { //水纹效果图
                 Intent intent = new Intent(this, WaterWaveActivity.class);
                 startActivity(intent);
 
             }
-                break;
+            break;
+            case R.id.btn_viewCard: { //层叠卡片
+                Intent intent = new Intent(this, CardViewActivity.class);
+                startActivity(intent);
+
+            }
+            break;
         }
     }
 }

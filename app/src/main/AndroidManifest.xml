@@ -21,6 +21,8 @@
         <activity android:name=".activities.WaveBallActivity" />
         <!-- 水纹特效 -->
         <activity android:name=".activities.WaterWaveActivity" />
+        <!-- 层叠卡片 -->
+        <activity android:name=".activities.CardViewActivity" />
     </application>
 
 </manifest>
