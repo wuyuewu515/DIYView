@@ -36,4 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="层叠卡片" />
+
+    <Button
+        android:id="@+id/btn_tanTan"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="仿探探特效" />
 </LinearLayout>

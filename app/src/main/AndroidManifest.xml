@@ -23,6 +23,8 @@
         <activity android:name=".activities.WaterWaveActivity" />
         <!-- 层叠卡片 -->
         <activity android:name=".activities.CardViewActivity" />
+        <!-- 仿照探探 -->
+        <activity android:name=".activities.TanTanActivity" />
     </application>
 
 </manifest>
