@@ -2,10 +2,12 @@ package com.wyw.diyviewdemo.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.wyw.diyviewdemo.R;
 import com.wyw.diyviewdemo.interfaces.ItemTouchListener;
@@ -20,7 +22,7 @@ import java.util.List;
  * 创建人：伍跃武
  * 创建时间：2017/6/21 10:06
  */
-public class RecyclerDragAdapter<T> extends RecyclerView.Adapter<DragViewHolder> implements ItemTouchListener {
+public class RecyclerDragAdapter<T> extends RecyclerView.Adapter<DragViewHolder> implements ItemTouchListener, View.OnClickListener {
 
     private List<T> dataLists;
     private Context context;
@@ -41,7 +43,9 @@ public class RecyclerDragAdapter<T> extends RecyclerView.Adapter<DragViewHolder>
 
     @Override
     public void onBindViewHolder(final DragViewHolder holder, int position) {
-        holder.tvText.setText(dataLists.get(position) + "");
+        String t = dataLists.get(position).toString();
+        holder.tvText.setText(t);
+        Log.d(getClass().getSimpleName(), String.format("position:%s,t:%s", position, t));
         holder.itemView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -52,6 +56,8 @@ public class RecyclerDragAdapter<T> extends RecyclerView.Adapter<DragViewHolder>
                 return false;
             }
         });
+        holder.itemView.setOnClickListener(this);
+        holder.itemView.setTag(R.id.tag_id, t);
     }
 
     @Override
@@ -64,7 +70,15 @@ public class RecyclerDragAdapter<T> extends RecyclerView.Adapter<DragViewHolder>
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        Collections.swap(dataLists, fromPosition, toPosition);
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(dataLists, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(dataLists, i, i - 1);
+            }
+        }
         notifyItemMoved(fromPosition, toPosition);
         return true;
     }
@@ -72,8 +86,21 @@ public class RecyclerDragAdapter<T> extends RecyclerView.Adapter<DragViewHolder>
     @Override
     public boolean onItemRemove(int position) {
         dataLists.remove(position);
+        Toast.makeText(context, "成功移除" + dataLists.get(position), Toast.LENGTH_SHORT).show();
         notifyItemRemoved(position);
         return true;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        Object vTag = v.getTag(R.id.tag_id);
+        if (null != vTag) {
+            if (vTag instanceof String) {
+                Toast.makeText(context, "当前位置" + vTag, Toast.LENGTH_SHORT).show();
+
+            }
+        }
     }
 }
 

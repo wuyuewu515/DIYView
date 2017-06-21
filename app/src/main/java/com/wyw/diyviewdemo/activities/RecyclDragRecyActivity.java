@@ -3,6 +3,7 @@ package com.wyw.diyviewdemo.activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -47,23 +48,29 @@ public class RecyclDragRecyActivity extends AppCompatActivity implements Recycle
 
     private void initViews() {
 
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
+//        LinearLayoutManager manager2 = new LinearLayoutManager(this);
+//        manager2.setOrientation(LinearLayoutManager.VERTICAL);
+     //   ryVer.setLayoutManager(manager2);
+
+        GridLayoutManager manager = new GridLayoutManager(this, 3);
+
         ryHor.setLayoutManager(manager);
         if (adapter == null) {
             adapter = new RecyclerDragAdapter(lists, this, this);
             ryHor.setAdapter(adapter);
+     //       ryVer.setAdapter(adapter);
         } else {
             adapter.notifyDataSetChanged();
         }
         ItemTouchHelper.Callback callback = new DragItemTouchHelperCallback(adapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(ryVer);
         itemTouchHelper.attachToRecyclerView(ryHor);
     }
 
     private void initData() {
         lists.clear();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             lists.add(i + "");
         }
 

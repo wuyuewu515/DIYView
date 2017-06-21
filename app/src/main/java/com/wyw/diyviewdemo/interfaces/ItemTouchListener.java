@@ -23,4 +23,5 @@ public interface ItemTouchListener {
      * @return
      */
     boolean onItemRemove(int position);
+
 }

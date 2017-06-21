@@ -32,11 +32,11 @@ public class DragItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         //支持上下
-        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT;
         //支持左右滑动
-        int swipFlags = ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT;
+        //    int swipFlags = ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT;
 
-        int flags = makeMovementFlags(dragFlags, swipFlags);
+        int flags = makeMovementFlags(dragFlags, 0);
         return flags;
     }
 
@@ -61,7 +61,8 @@ public class DragItemTouchHelperCallback extends ItemTouchHelper.Callback {
      */
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-        dragListener.onItemRemove(viewHolder.getAdapterPosition());
+        int position = viewHolder.getAdapterPosition();
+        dragListener.onItemRemove(position);
     }
 
     @Override
@@ -85,6 +86,7 @@ public class DragItemTouchHelperCallback extends ItemTouchHelper.Callback {
         super.clearView(recyclerView, viewHolder);
     }
 
+
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         //在左右滑动时，让item的透明度随着移动而改变，并缩放
@@ -95,7 +97,7 @@ public class DragItemTouchHelperCallback extends ItemTouchHelper.Callback {
             viewHolder.itemView.setScaleY(alpha);
 
         }
-        //防止item复用出现问题
+        //防止item复用变成透明
         if (alpha <= 0) {
             viewHolder.itemView.setAlpha(1);
             viewHolder.itemView.setScaleX(1);
