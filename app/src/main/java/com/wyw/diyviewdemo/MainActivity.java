@@ -7,9 +7,11 @@ import android.view.View;
 
 import com.wyw.diyviewdemo.activities.CardViewActivity;
 import com.wyw.diyviewdemo.activities.DashboardActivity;
+import com.wyw.diyviewdemo.activities.RecyclDragRecyActivity;
 import com.wyw.diyviewdemo.activities.TanTanActivity;
 import com.wyw.diyviewdemo.activities.WaterWaveActivity;
 import com.wyw.diyviewdemo.activities.WaveBallActivity;
+import com.wyw.diyviewdemo.interfaces.RecyclerDragListener;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.btn_dashbord, R.id.btn_dashbord2,
-            R.id.btn_dashbord3, R.id.btn_viewCard,R.id.btn_tanTan})
+            R.id.btn_dashbord3, R.id.btn_viewCard, R.id.btn_tanTan, R.id.btn_recy})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_dashbord: { //仪表盘视图
@@ -52,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
             break;
             case R.id.btn_tanTan: { //层叠卡片，仿探探效果
                 Intent intent = new Intent(this, TanTanActivity.class);
+                startActivity(intent);
+
+            }
+            break;
+            case R.id.btn_recy: { //可拖拽的recycleView
+                Intent intent = new Intent(this, RecyclDragRecyActivity.class);
                 startActivity(intent);
 
             }

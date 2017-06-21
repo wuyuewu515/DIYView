@@ -25,6 +25,8 @@
         <activity android:name=".activities.CardViewActivity" />
         <!-- 仿照探探 -->
         <activity android:name=".activities.TanTanActivity" />
+        <!-- recyclerView可拖拽 -->
+        <activity android:name=".activities.RecyclDragRecyActivity" />
     </application>
 
 </manifest>

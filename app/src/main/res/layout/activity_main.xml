@@ -42,4 +42,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="仿探探特效" />
+    <Button
+        android:id="@+id/btn_recy"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="可拖拽的recycleView" />
 </LinearLayout>
