@@ -27,6 +27,8 @@
         <activity android:name=".activities.TanTanActivity" />
         <!-- recyclerView可拖拽 -->
         <activity android:name=".activities.RecyclDragRecyActivity" />
+        <!-- 支付宝，微信支付框 -->
+        <activity android:name=".activities.AliPayPWDActivity" />
     </application>
 
 </manifest>

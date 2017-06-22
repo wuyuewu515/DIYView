@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.wyw.diyviewdemo.activities.AliPayPWDActivity;
 import com.wyw.diyviewdemo.activities.CardViewActivity;
 import com.wyw.diyviewdemo.activities.DashboardActivity;
 import com.wyw.diyviewdemo.activities.RecyclDragRecyActivity;
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_dashbord, R.id.btn_dashbord2,
-            R.id.btn_dashbord3, R.id.btn_viewCard, R.id.btn_tanTan, R.id.btn_recy})
+    @OnClick({R.id.btn_dashbord, R.id.btn_dashbord2, R.id.btn_dashbord3,
+            R.id.btn_viewCard, R.id.btn_tanTan, R.id.btn_recy, R.id.btn_ali})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_dashbord: { //仪表盘视图
@@ -61,7 +62,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_recy: { //可拖拽的recycleView
                 Intent intent = new Intent(this, RecyclDragRecyActivity.class);
                 startActivity(intent);
-
+            }
+            break;
+            case R.id.btn_ali: { //支付宝，微信支付框
+                Intent intent = new Intent(this, AliPayPWDActivity.class);
+                startActivity(intent);
             }
             break;
         }
