@@ -19,10 +19,10 @@
         app:gpvTextSize="25sp" />
 
     <com.jungly.gridpasswordview.GridPasswordView
-        android:layout_marginTop="20dp"
         android:id="@+id/pswView2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         app:gpvGridColor="#ffffff"
         app:gpvLineColor="#2196F3"
         app:gpvLineWidth="1dp"
@@ -31,4 +31,14 @@
         app:gpvPasswordType="textWebPassword"
         app:gpvTextColor="#2196F3"
         app:gpvTextSize="25sp" />
+
+
+    <com.wyw.diyviewdemo.views.PayPwdEditText
+        android:id="@+id/payEdit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="20dp"
+        android:background="#00aa00" />
 </LinearLayout>
