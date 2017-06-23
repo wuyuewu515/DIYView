@@ -47,8 +47,6 @@ public class AliPayPWDActivity extends AppCompatActivity {
             }
         });
 
-
-
         payEdit.initStyle(R.drawable.edit_num_bg, 6, 0.33f, R.color.colorPrimary, R.color.colorPrimary, 20);
         payEdit.setOnTextFinishListener(new PayPwdEditText.OnTextFinishListener() {
             @Override

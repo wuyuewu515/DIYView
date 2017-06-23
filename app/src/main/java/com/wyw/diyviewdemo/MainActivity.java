@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
+import com.meituan.android.walle.WalleChannelReader;
 import com.wyw.diyviewdemo.activities.AliPayPWDActivity;
 import com.wyw.diyviewdemo.activities.CardViewActivity;
 import com.wyw.diyviewdemo.activities.DashboardActivity;
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        String channel = WalleChannelReader.getChannel(this);
+        Toast.makeText(this, channel, Toast.LENGTH_SHORT).show();
     }
 
     @OnClick({R.id.btn_dashbord, R.id.btn_dashbord2, R.id.btn_dashbord3,
