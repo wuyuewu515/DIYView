@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         String channel = WalleChannelReader.getChannel(this);
-        Toast.makeText(this, channel, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "hello world", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick({R.id.btn_dashbord, R.id.btn_dashbord2, R.id.btn_dashbord3,
