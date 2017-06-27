@@ -12,25 +12,37 @@ android {
         versionName "1.0"
     }
 
-    signingConfigs {
-        release {
-            storeFile file('../config/DIYViewKeystore.jks')
-            storePassword 'w946456206'
-            keyAlias 'wyw'
-            keyPassword 'w946456206'
-            v2SigningEnabled true
-        }
-    }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            //实现自动签名
+            signingConfig getSignInfo("../config/releasesign.properties");
+        }
+        debug{
+
+          //  signingConfig getSignInfo("../config/releasesign.properties");
         }
     }
 
+}
 
+def getSignInfo(propFileName) {
+    def com.android.build.gradle.internal.dsl.SigningConfig signingConfig = new com.android.build.gradle.internal.dsl.SigningConfig("signInfo")
+    File propFile = file(propFileName);
+    if (propFile.exists()) {
+        def Properties props = new Properties()
+        props.load(new FileInputStream(propFile))
+        signingConfig.storeFile = file(props['STORE_FILE'])
+        signingConfig.storePassword = props['STORE_PASSWORD']
+        signingConfig.keyAlias = props['KEY_ALIAS']
+        signingConfig.keyPassword = props['KEY_PASSWORD']
+        signingConfig.v2SigningEnabled = props['V2SIGNINGENABLED']
+        println('signConfig is exits')
+    } else {
+        println('sign config is null')
+        signingConfig = null
+    }
+    return signingConfig;
 }
 
 def getDate() {
